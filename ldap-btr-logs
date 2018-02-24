@@ -1,0 +1,5 @@
+printf "Enter UCP URL: https://"
+read url
+printf "Enter UCP admin's password: "
+read -s password
+curl -k -u admin:$password https://$url/enzi/v0/jobs/$(curl -k -u admin:$password https://$url/enzi/v0/jobs/?action=ldap-sync 2>/dev/null | jq .jobs[0].id -r)/logs
